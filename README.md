@@ -17,14 +17,20 @@ gem install sri
 This gem comes with an executable called `generate-sri`. You can run it like this:
 
 ```
-generate-sri -hash sha384 ~/path/to/a/file
+generate-sri -h sha512 ~/path/to/a/file
 ```
 
 Or like this:
 
 ```
-cat ~/path/to/a/file | generate-sri -hash sha384
+cat ~/path/to/a/file | generate-sri -h sha512
 ```
+
+You may pass one of these through as the `-h` option:
+
+* sha256
+* sha384
+* sha512
 
 ## Rationale
 
