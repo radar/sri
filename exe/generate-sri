@@ -1,5 +1,23 @@
 #!/usr/bin/env ruby
 
 require 'sri'
+require 'clamp'
 
-puts %Q{integrity="sha512-#{SRI.from_file(ARGV[0])}"}
+Clamp do
+  option ["-h", "--hash"], "[sha256 | sha384 | sha512]", "hashing algorithm to use", required: true, attribute_name: :algorithm
+  parameter "[FILE]", "source file", optional: true
+
+  def execute
+    data = if file
+      File.read(file)
+    else
+      STDIN.read
+    end
+
+    puts SRI.generate_hash(algorithm, data)
+  end
+end
+
+
+
+# puts %Q{integrity="sha512-#{SRI.from_file(ARGV[0])}"}

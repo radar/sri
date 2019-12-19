@@ -2,12 +2,17 @@ require "sri/version"
 require "openssl"
 
 module SRI
-  def self.from_file(file)
-    generate_hash(File.read(File.expand_path(file)))
-  end
+  def self.generate_hash(algorithm, content)
+    digest_class = case algorithm
+    when "sha256"
+      OpenSSL::Digest::SHA256
+    when "sha384"
+      OpenSSL::Digest::SHA384
+    when "sha512"
+      OpenSSL::Digest::SHA512
+    end
 
-  def self.generate_hash(content)
-    digest = OpenSSL::Digest::SHA512.new
+    digest = digest_class.new
     digest << content
     digest.base64digest
   end
