@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require 'sri'
+
+puts %Q{integrity="sha512-#{SRI.from_file(ARGV[0])}"}
