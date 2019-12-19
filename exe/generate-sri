@@ -14,7 +14,8 @@ Clamp do
       STDIN.read
     end
 
-    puts SRI.generate_hash(algorithm, data)
+    hash = SRI.generate_hash(algorithm, data)
+    puts %Q{integrity="#{hash}"}
   end
 end
 
