@@ -1,7 +1,5 @@
 require "sri/version"
 require "openssl"
-require "base64"
-require "pry"
 
 module SRI
   def self.from_file(file)
